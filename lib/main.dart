@@ -1,17 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:squash_page/supabase_options.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
-void main() {
-  runApp(const MyApp());
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  await Supabase.initialize(
+    url: DefaultSupabaseOptions.url,
+    anonKey: DefaultSupabaseOptions.anonKey,
+  );
+  runApp(const SquashPage());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class SquashPage extends StatelessWidget {
+  const SquashPage({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'SquashPage',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
@@ -22,7 +29,7 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
+  const MyHomePage({required this.title, super.key});
 
   final String title;
 
